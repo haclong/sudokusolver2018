@@ -9,25 +9,17 @@ use Sudoku\Domain\Exception\InvalidGridIndexException;
  *
  * @author haclong
  */
-class Grid25Index {
-    protected $index ;
+class Grid25Index extends GridIndex {
+    protected $size = 25 ;
     
-    public function __construct($index)
+    public function __construct($index, $gridSize)
     {
+        $this->validateSize($gridSize) ;
+        
         if($index > 24)
         {
             throw new InvalidGridIndexException() ;
         }
         $this->index = $index ;
-    }
-    
-    public function __toString()
-    {
-        return $this->get() ;
-    }
-    
-    public function get()
-    {
-        return $this->index ;
     }
 }

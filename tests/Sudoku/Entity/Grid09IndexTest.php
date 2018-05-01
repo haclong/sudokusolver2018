@@ -13,7 +13,7 @@ use Sudoku\Domain\Entity\Grid09Index;
 class Grid09IndexTest extends PHPUnit_Framework_TestCase {
     public function testSetCorrectIndex()
     {
-        $index = new Grid09Index(2) ;
+        $index = new Grid09Index(2, 9) ;
         $this->assertEquals(2, $index->get()) ;
     }
     
@@ -23,6 +23,15 @@ class Grid09IndexTest extends PHPUnit_Framework_TestCase {
     public function testIncorrectIndexThrowsException()
     {
 //        $this->expectException(InvalidGridIndexException::class);
-        new Grid09Index(9) ;
+        new Grid09Index(9, 9) ;
+    }
+    
+    /**
+     * @expectedException Sudoku\Domain\Exception\GridIndexAndGridSizeNotMatchException
+     */
+    public function testGridSizeAndGridIndexNotMatchException()
+    {
+//        $this->expectException(InvalidGridIndexException::class);
+        new Grid09Index(9, 8) ;
     }
 }
