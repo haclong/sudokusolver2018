@@ -1,6 +1,6 @@
 <?php
 
-namespace Sudoku\Infra\Filter;
+namespace Sudoku\Infra\Entity;
 
 use Sudoku\Infra\Exception\ArrayExpected;
 use Sudoku\Infra\Exception\ArrayKeyNotFound;
@@ -11,11 +11,12 @@ use Sudoku\Infra\Exception\InvalidLevelValue;
 use Sudoku\Infra\Exception\WrongGridSize;
 
 /**
- * Description of NewGridFilter
+ * Description of NewGridFromPost
  *
  * @author haclong
  */
-class NewGridFilter {
+class NewGridFromPost {
+    protected $guid ;
     protected $array ;
     protected $size ;
     protected $level ;
@@ -23,6 +24,7 @@ class NewGridFilter {
     
     public function __construct(array $requestParam)
     {
+        $this->guid = uniqid() ;
         if(!array_key_exists('t', $requestParam))
         {
             throw new ArrayKeyNotFound('t') ;

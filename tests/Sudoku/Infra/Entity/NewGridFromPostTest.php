@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Sudoku\Infra\Filter;
+namespace Tests\Sudoku\Infra\Entity;
 
 use PHPUnit_Framework_TestCase;
-use Sudoku\Infra\Filter\NewGridFilter;
+use Sudoku\Infra\Entity\NewGridFromPost;
 
 /**
- * Description of NewGridFilterTest
+ * Description of NewGridFromPostTest
  *
  * @author haclong
  */
-class NewGridFilterTest extends PHPUnit_Framework_TestCase {
+class NewGridFromPostTest extends PHPUnit_Framework_TestCase {
     protected function mockArray($size)
     {
         $t = [] ;
@@ -29,7 +29,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testArrayExpected()
     {
-        new NewGridFilter(['t' => '', 'size' => 9, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => '', 'size' => 9, 'level' => 'easy']) ;
     }
 
     /**
@@ -37,7 +37,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testArrayKeyLevelExpected()
     {
-        new NewGridFilter(['size' => 9, 't' => []]) ;
+        new NewGridFromPost(['size' => 9, 't' => []]) ;
     }
 
     /**
@@ -45,7 +45,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testArrayKeyTExpected()
     {
-        new NewGridFilter(['size' => 9, 'level' => 'easy']) ;
+        new NewGridFromPost(['size' => 9, 'level' => 'easy']) ;
     }
 
     /**
@@ -53,7 +53,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testArrayKeySizeExpected()
     {
-        new NewGridFilter(['t' => [], 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => [], 'level' => 'easy']) ;
     }
 
     /**
@@ -61,7 +61,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testIntExpected()
     {
-        new NewGridFilter(['t' => [], 'size' => 'A', 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => [], 'size' => 'A', 'level' => 'easy']) ;
     }
 
     /**
@@ -75,11 +75,11 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
         $t25 = $this->mockArray(25) ;
         $t5 = $this->mockArray(5) ;
         
-        new NewGridFilter(['t' => $t4, 'size' => 4, 'level' => 'easy']) ;
-        new NewGridFilter(['t' => $t9, 'size' => 9, 'level' => 'easy']) ;
-        new NewGridFilter(['t' => $t16, 'size' => 16, 'level' => 'easy']) ;
-        new NewGridFilter(['t' => $t25, 'size' => 25, 'level' => 'easy']) ;
-        new NewGridFilter(['t' => $t5, 'size' => 5, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => $t4, 'size' => 4, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => $t9, 'size' => 9, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => $t16, 'size' => 16, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => $t25, 'size' => 25, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => $t5, 'size' => 5, 'level' => 'easy']) ;
     }
 
     /**
@@ -87,7 +87,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testArraySizeNotMatchingExpected()
     {
-        new NewGridFilter(['t' => [], 'size' => 4, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => [], 'size' => 4, 'level' => 'easy']) ;
     }
 
     /**
@@ -95,7 +95,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
      */
     public function testInnerArraySizeNotMatchingExpected()
     {
-        new NewGridFilter(['t' => [0 => ['', '', '', ''], 1 => [], 2 => [], 3 => []], 'size' => 4, 'level' => 'easy']) ;
+        new NewGridFromPost(['t' => [0 => ['', '', '', ''], 1 => [], 2 => [], 3 => []], 'size' => 4, 'level' => 'easy']) ;
     }
 
     /**
@@ -113,7 +113,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
             'size' => 4,
             'level' => 'easy'
         ] ;
-        new NewGridFilter($array) ;
+        new NewGridFromPost($array) ;
     }
 
     public function testNewGridFilterEasyLevelValueIsOk()
@@ -129,7 +129,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
             'level' => 'easy'
         ] ;
         
-        $this->assertInstanceOf(NewGridFilter::class, new NewGridFilter($array) ) ;
+        $this->assertInstanceOf(NewGridFromPost::class, new NewGridFromPost($array) ) ;
     }
     
     public function testNewGridFilterNormalLevelValueIsOk()
@@ -145,7 +145,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
             'level' => 'normal'
         ] ;
         
-        $this->assertInstanceOf(NewGridFilter::class, new NewGridFilter($array) ) ;
+        $this->assertInstanceOf(NewGridFromPost::class, new NewGridFromPost($array) ) ;
     }
     
     public function testNewGridFilterHardLevelValueIsOk()
@@ -161,7 +161,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
             'level' => 'hard'
         ] ;
         
-        $this->assertInstanceOf(NewGridFilter::class, new NewGridFilter($array) ) ;
+        $this->assertInstanceOf(NewGridFromPost::class, new NewGridFromPost($array) ) ;
     }
 
     public function testNewGridFilterCrazyLevelValueIsOk()
@@ -177,7 +177,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
             'level' => 'crazy'
         ] ;
         
-        $this->assertInstanceOf(NewGridFilter::class, new NewGridFilter($array) ) ;
+        $this->assertInstanceOf(NewGridFromPost::class, new NewGridFromPost($array) ) ;
     }
 
     /**
@@ -196,7 +196,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
             'level' => 'difficult'
         ] ;
         
-        new NewGridFilter($array) ;
+        new NewGridFromPost($array) ;
     }
 
     public function testNewGridFilterReturnsRightfulArray()
@@ -221,7 +221,7 @@ class NewGridFilterTest extends PHPUnit_Framework_TestCase {
         $expected[3][1] = 2 ;
         $expected[3][3] = 4 ;
         
-        $filter = new NewGridFilter($array) ;
+        $filter = new NewGridFromPost($array) ;
         $this->assertEquals($filter->getArray(), $expected) ;
         $this->assertEquals($filter->getSize(), 4) ;
         $this->assertEquals($filter->getLevel(), 'easy') ;
